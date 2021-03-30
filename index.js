@@ -24,7 +24,9 @@ client.connect(err => {
   app.get('/products', (req, res) => {
       productsCollection.find({})
       .toArray((err, documents) => {
-        res.send("documents")
+        console.log(err);
+        console.log(documents);
+        res.send(documents)
       })
   })
 
