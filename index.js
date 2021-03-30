@@ -13,7 +13,6 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
   const productsCollection = client.db("emaJohnStore").collection("products");
   const ordersCollection = client.db("emaJohnStore").collection("orders");
-  console.log(err);
   app.post('/addProduct', (req, res) => {
       const product = req.body;
       productsCollection.insertOne(product).then(result => {
@@ -24,8 +23,6 @@ client.connect(err => {
   app.get('/products', (req, res) => {
       productsCollection.find({})
       .toArray((err, documents) => {
-        console.log(err);
-        console.log(documents);
         res.send(documents)
       })
   })
